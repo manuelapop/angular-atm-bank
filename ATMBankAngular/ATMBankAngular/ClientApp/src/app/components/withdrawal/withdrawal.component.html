@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row" style="padding-top:20px;">
+    <div class="col-sm-6 offset-sm-1">
+      <form [formGroup]="withdrawForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="withdrawal">Withdraw Amount</label>
+          <input type="number" formControlName="withdrawal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.withdrawal.errors }" />
+          <div *ngIf="submitted && f.withdrawal.errors" class="invalid-feedback">
+            <div *ngIf="f.withdrawal.errors.required">Amount is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Submit
+          </button>
+        </div>
+      </form>
+      <div *ngIf="errormessage">
+        {{errormessage}}
+      </div>
+    </div>
+  </div>
+</div>
+
